@@ -41,6 +41,17 @@ describe('Casos de ejemplo', () => { // Engloba todas las pruebas (it) de un cas
     expect(page.getName()).toEqual('Jorge'); // comprobamos que el input tenga el valor que le acabamos de escribir
   });
 
+  it('Deben de estar limpios todos los campos despues de recargar', async () => { // en este ejemplo podemos quitar el método waitForAngular y los await
+    page.navigateToReactivePage();                           // pero los dejo por que me parece mas ilustrativo para futuras prácticas
+    await browser.waitForAngular(); // espera que angular este estable (termine de cargar la página)
+    await page.setName('Jorge');
+    await page.setApellido('Barrera');
+    //page.clickSaveButton();
+    await page.clickSaveButton();
+    expect(page.getName()).toEqual(''); //Comprobamos que despues de recargar el nombre sea nulo
+    expect(page.getApellido()).toEqual(''); // Comprobamos que despues de recargar el apellido sea nulo
+  });
+
   it('Debe mostrar un error en el campo apellido si presionamos guardar', () => {
     page.navigateToReactivePage();
     page.clickSaveButton();

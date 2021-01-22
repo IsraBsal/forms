@@ -8,13 +8,15 @@ export class ReactivePage { // clase de la página formularios reactive
   addButton: ElementFinder;
   deleteButton: ElementArrayFinder;
   errorsText: ElementArrayFinder;
+  apellidoinput: ElementFinder;
 
   constructor() {
     this.title = element(by.css('h4')); // obtenemos el elemento h4
-    this.nameinput = element(by.css('input[formControlName=nombre]')); // obtenemos en input por formControlName
+    this.nameinput = element(by.css('input[formControlName=nombre]')); // obtenemos en input por formControlName de nombre
     this.saveButton = element(by.className('btn-outline-primary')); // obtenemos el elemento por el nombre de la clase
     this.addButton = element(by.className('btn-success'));
     this.errorsText = element.all(by.css('.text-danger')); // obtenemos todos los elementos con la clase text-danger
+    this.apellidoinput=element(by.css('input[formControlName=apellido]'));//Obtenemos el input por formControlName de apellido
   }
 
   navigateToReactivePage(): Promise<unknown> { // navega a la ruta /reactive
@@ -50,4 +52,17 @@ export class ReactivePage { // clase de la página formularios reactive
   getTextOfEspecificError(indice: number): Promise<string>{ // obtiene el texto de un mensaje de error especifico
     return this.errorsText.get(indice).getText() as Promise<string>;
   }
+
+  setApellido(apellido: string): Promise<void>{ // escribe el el input name
+    this.apellidoinput.clear();
+    return this.apellidoinput.sendKeys(apellido) as Promise<void>;
+  }
+
+  getApellido(): Promise<string>{ // regresa el texto del input name
+    return this.apellidoinput.getAttribute('value') as Promise<string>;
+  }
+
+
+
+
 }
