@@ -9,6 +9,12 @@ export class ReactivePage { // clase de la página formularios reactive
   deleteButton: ElementArrayFinder;
   errorsText: ElementArrayFinder;
   apellidoinput: ElementFinder;
+  contrasenainput: ElementFinder;
+  correoinput: ElementFinder;
+  usuarioinput: ElementFinder;
+  repcontrasenainput: ElementFinder;
+  estadoinput: ElementFinder;
+  municipioinput: ElementFinder;
 
   constructor() {
     this.title = element(by.css('h4')); // obtenemos el elemento h4
@@ -17,6 +23,13 @@ export class ReactivePage { // clase de la página formularios reactive
     this.addButton = element(by.className('btn-success'));
     this.errorsText = element.all(by.css('.text-danger')); // obtenemos todos los elementos con la clase text-danger
     this.apellidoinput=element(by.css('input[formControlName=apellido]'));//Obtenemos el input por formControlName de apellido
+    this.contrasenainput=element(by.css('input[formControlName=pass1]'));//Obtenemos la contrasena por formControlName de pass1
+    this.correoinput=element(by.css('input[formControlName=correo]')); //Obtenemos el correo por formConrtolName de correo
+    this.usuarioinput=element(by.css('input[formControlName=usuario]')); //Obtenemos el usuario por formControlName de usuario
+    this.repcontrasenainput=element(by.css('input[formControlName=pass2]'))//Obtenemos repetir contrasena por formCOntrolName de pass2
+    this.estadoinput=element(by.css('input[formControlName=estado]')) //
+    this.municipioinput=element(by.css('input[formControlName=municipio]'))
+    this.deleteButton = element(by.); //Configurando el boton de eliminar hobbie
   }
 
   navigateToReactivePage(): Promise<unknown> { // navega a la ruta /reactive
@@ -62,7 +75,57 @@ export class ReactivePage { // clase de la página formularios reactive
     return this.apellidoinput.getAttribute('value') as Promise<string>;
   }
 
+  setContrasena(contrasena: string): Promise<void>{ // escribe el el input contrasena
+    this.contrasenainput.clear();
+    return this.contrasenainput.sendKeys(contrasena) as Promise<void>;
+  }
 
+  getContrasena(): Promise<string>{ // regresa el texto del input contrasena
+    return this.contrasenainput.getAttribute('value') as Promise<string>;
+  }
 
+  setCorreo(correo: string): Promise<void>{ // escribe el el input correo
+    this.correoinput.clear();
+    return this.correoinput.sendKeys(correo) as Promise<void>;
+  }
 
+  getCorreo(): Promise<string>{ // regresa el texto del input correo
+    return this.correoinput.getAttribute('value') as Promise<string>;
+  }
+
+  setUsuario(usuario: string): Promise<void>{ // escribe el el input usuario
+    this.usuarioinput.clear();
+    return this.usuarioinput.sendKeys(usuario) as Promise<void>;
+  }
+
+  getUsuario(): Promise<string>{ // regresa el texto del input usuario
+    return this.usuarioinput.getAttribute('value') as Promise<string>;
+  }
+
+  setContrasena2(contrasena2: string): Promise<void>{ // escribe el el input name
+    this.repcontrasenainput.clear();
+    return this.repcontrasenainput.sendKeys(contrasena2) as Promise<void>;
+  }
+
+  getContrasena2(): Promise<string>{ // regresa el texto del input name
+    return this.repcontrasenainput.getAttribute('value') as Promise<string>;
+  }
+
+  setEstado(estado: string): Promise<void>{ // escribe el el input name
+    this.estadoinput.clear();
+    return this.estadoinput.sendKeys(estado) as Promise<void>;
+  }
+
+  getEstado(): Promise<string>{ // regresa el texto del input name
+    return this.estadoinput.getAttribute('value') as Promise<string>;
+  }
+
+  setMunicipio(municipio: string): Promise<void>{ // escribe el el input name
+    this.municipioinput.clear();
+    return this.municipioinput.sendKeys(municipio) as Promise<void>;
+  }
+
+  getMunicipio(): Promise<string>{ // regresa el texto del input name
+    return this.municipioinput.getAttribute('value') as Promise<string>;
+  }
 }
