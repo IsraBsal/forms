@@ -29,7 +29,7 @@ export class ReactivePage { // clase de la página formularios reactive
     this.repcontrasenainput=element(by.css('input[formControlName=pass2]'))//Obtenemos repetir contrasena por formCOntrolName de pass2
     this.estadoinput=element(by.css('input[formControlName=estado]')) //
     this.municipioinput=element(by.css('input[formControlName=municipio]'))
-    this.deleteButton = element(by.); //Configurando el boton de eliminar hobbie
+    this.deleteButton = element.all(by.className('btn-danger')); //Configurando el boton de eliminar hobbie como un array
   }
 
   navigateToReactivePage(): Promise<unknown> { // navega a la ruta /reactive
