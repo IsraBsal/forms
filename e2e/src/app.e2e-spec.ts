@@ -92,7 +92,22 @@ describe('Casos de ejemplo', () => { // Engloba todas las pruebas (it) de un cas
     await page.clickAddButton();
     expect(page.deleteHobbieButtonIsPresent()).toBeTruthy();
     
+    await page.clickDeleteButton();
+    expect(page.deleteHobbieButtonIsPresent()).toBeFalsy();
+
+    
   })
+
+  it ('Probando correo con valores de un arreglo',async () => {
+    let nombres = ['jorge', 'jorge@' , 'jorge@ho']
+    page.navigateToReactivePage();
+    nombres.forEach(async (nombre) => {
+      await page.setCorreo(nombre);
+      expect(page.getTextOfEspecificError(0)).toEqual( 'Correo obligatorio ;)' ); 
+    })
+  })
+
+  
 
   // ******* EJERCICIOS PARA PRACTICAR ************
   // 1. llenar todos los campos del formulario reactivo correctamente, presionar el botón guardar y verificar que se

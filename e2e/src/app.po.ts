@@ -57,6 +57,10 @@ export class ReactivePage { // clase de la página formularios reactive
     return this.addButton.click() as Promise<void>;
   }
 
+  clickDeleteButton(): Promise<void>{
+    return this.deleteButton.click() as Promise<void>;
+  }
+
   deleteHobbieButtonIsPresent(): Promise<boolean>{ // comprueba si el botón borrar existe
     this.addButton = element(by.className('btn-danger'));
     return this.addButton.isPresent() as Promise<boolean>;
