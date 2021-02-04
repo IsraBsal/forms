@@ -1,5 +1,6 @@
 import { browser, logging } from 'protractor';
 import { protractor } from 'protractor/built/ptor';
+import { __awaiter } from 'tslib';
 import { TemplatePage } from './template.po';
 
 const origFn = browser.driver.controlFlow().execute;
@@ -8,7 +9,7 @@ browser.driver.controlFlow().execute = function stop() {
     const args = arguments;
   
     origFn.call(browser.driver.controlFlow(), () => {
-      return protractor.promise.delayed(10); // tiempo de retraso entre cada paso
+      return protractor.promise.delayed(100); // tiempo de retraso entre cada paso
     });
   
     return origFn.apply(browser.driver.controlFlow(), args);
@@ -29,7 +30,7 @@ describe('Casos de ejemplo template',()=>{
 
     it ('Seleccionamos cuba en el select',async () => { //Componiendo
       await page.navigateToTemplatePage();
-      await page.Click();
+      expect(page.isSelected()).toBeTruthy;
     })
 
     

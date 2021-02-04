@@ -8,7 +8,7 @@ export class TemplatePage{ //Clase de la pagina template reactive
 
     constructor(){
         this.title = element(by.css('h4'));
-        //this.paisselect=element(by.cssContainingText('.pais','Cuba'));
+        this.paisselect=element(by.cssContainingText('option','Cuba'));
         this.errorsText = element.all(by.css('.text-danger'));
     }
 
@@ -20,12 +20,15 @@ export class TemplatePage{ //Clase de la pagina template reactive
         return this.errorsText.get(indice).getText() as Promise<string>;
     }
 
-    Click(){
-        element(by.cssContainingText('.pais','CUB')).click();
+    getElementSelect(): Promise <string>{
+        return this.paisselect.getText() as Promise<string>
     }
 
+    isSelected(): Promise <boolean>{
+        this.paisselect.click()
+        return this.paisselect.isSelected() as Promise<boolean>
+    }
 
-    
     
 
 }
